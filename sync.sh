@@ -19,6 +19,7 @@ esac
 
 set -x
 rsync $options \
+  --exclude='.DS_Store' \
   --exclude='.git*' \
   --exclude='*~' \
   --exclude='sync.sh' \
