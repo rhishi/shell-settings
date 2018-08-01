@@ -16,6 +16,15 @@
 
 echo Executing .bash_profile
 
+export PLATFORM=unknown
+case "$(uname)" in
+    Linux)  PLATFORM=linux   ;;
+    Darwin) PLATFORM=mac     ;;
+    *)      PLATFORM=unknown ;;
+esac
+
+export CODE="$HOME/code"
+
 # Invoke ~/.bashrc
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
