@@ -19,6 +19,8 @@ esac
 
 set -x
 rsync $options \
+  --exclude='LICENSE' \
+  --exclude='README.md' \
   --exclude='.DS_Store' \
   --exclude='.git*' \
   --exclude='*~' \
