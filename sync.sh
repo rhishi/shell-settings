@@ -2,6 +2,7 @@
 
 arg="$1"
 progname=`basename "$0"`
+progdir=`dirname "$0"`
 
 usage="  Usage:
      $progname -h|--help
@@ -21,4 +22,4 @@ rsync $options \
   --exclude='.git*' \
   --exclude='*~' \
   --exclude='sync.sh' \
-  . ~
+  "$progdir/" "$HOME/"
