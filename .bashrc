@@ -113,3 +113,118 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
+
+################################################################################
+# Aliases
+
+alias code="cd $CODE"
+
+# Display $PATH in a nicer way -- one path element per line.
+alias path='echo $PATH | tr ":" "\n"'
+#alias path='echo $PATH | sed -e "s/:/\n/g"'  # This doesn't work in MacOS.
+
+# Alert after long running commands.
+# Usage: sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+
+alias c='clear'
+alias e='exit'
+alias j='jobs'
+alias h='history'
+alias cx='chmod +x'
+alias ..='cd ..'
+alias more='less'
+
+
+# Enable color support.
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# Aliases to enable color if available.
+if [ -x /usr/bin/dircolors ]; then
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
+# Override 'ls' itself to have color (if available) and human-readable size.
+if [ -x /usr/bin/dircolors ]; then
+    alias ls='ls -h --color=auto'
+else
+    alias ls='ls -h'
+fi
+
+# Some more 'ls' aliases.
+alias l='ls -l'
+alias ll='ls -alF'
+alias lc='ls -CF'
+
+alias la='ls -A'       # show hidden files, but not . and .. (that's -a)
+alias lla='ls -Al'     # show hidden files, but not . and .. in -l style
+
+
+case $PLATFORM in
+    linux) emacs="/usr/bin/emacs" ;;
+    mac)   emacs="/Applications/Emacs.app/Contents/MacOS/Emacs" ;;
+esac
+
+# Emacs with window; with zero or one argument; automatic `&' at the end.
+function emw() {
+    if [ -z "$1" ]; then
+        "$emacs" &
+    else
+        "$emacs" "$1" --name "$1" &
+    fi
+}
+
+# Emacs with no window i.e. within the terminal; with zero or one argument.
+function emnw() {
+    if [ -z "$1" ]; then
+        "$emacs" -nw
+    else
+        "$emacs" -nw "$1"
+    fi
+}
+
+# Window/no-window Emacs detected based on $DISPLAY; with zero or one argument.
+function em() {
+    if [ $?DISPLAY ]; then
+        emw "$1"
+    else
+        emnw "$1"
+    fi
+}
+
+
+case $PLATFORM in
+    mac) alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox' ;;
+esac
+function firefox() {
+    firefox "$@" &
+}
+
+case $PLATFORM in
+    linux) idea_ce="/opt/idea-ce/bin/idea.sh" ;;
+    mac)   idea_ce="/usr/local/bin/idea" ;;
+esac
+function idea() {
+  "$idea_ce" "$@" &
+}
+
+case $PLATFORM in
+    linux) android_studio="/opt/androidstudio/bin/studio.sh" ;;
+    mac)   android_studio="/Applications/Android Studio.app/Contents/MacOS/studio" ;;
+esac
+function studio() {
+  "$android_studio" "$@" &
+}
