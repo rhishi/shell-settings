@@ -2,9 +2,7 @@
 #
 # See ~/.bash_profile for the description of when which files are executed.
 
-echo Executing .bashrc
-
-# If not running interactively, don't do anything.
+# If not running interactively, don't do anything.  Otherwise scp, rsync break.
 case $- in
     *i*) ;;
       *) return ;;
