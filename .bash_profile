@@ -16,9 +16,10 @@
 #    the destination.
 #
 # Hence,
-# 1) Put PATH modifications in ~/.bash_profile
-# 2) Put aliases and other customizations in ~/.bashrc.
-# 3) Invoke ~/.bashrc at the end of ~/.bash_profile.
+# -- Put PATH modifications in ~/.bash_profile.
+# -- Source bash completions in ~/.bash_profile.
+# -- Put aliases and other customizations in ~/.bashrc.
+# -- Invoke ~/.bashrc at the end of ~/.bash_profile.
 
 export PLATFORM=unknown
 case "$(uname)" in
@@ -33,6 +34,12 @@ export CODE="$HOME/code"
 # PATH Customizations
 
 export PATH="$HOME/anaconda/bin:/opt/local/bin:$PATH"
+
+
+################################################################################
+# Bash Completions
+
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 
 ################################################################################
