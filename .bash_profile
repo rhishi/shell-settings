@@ -19,7 +19,7 @@
 # -- Put PATH modifications in ~/.bash_profile.
 # -- Source bash completions in ~/.bash_profile.
 # -- Put aliases and other customizations in ~/.bashrc.
-# -- Invoke ~/.bashrc at the end of ~/.bash_profile.
+# -- Source ~/.bashrc at the end of ~/.bash_profile.
 
 export PLATFORM=unknown
 case "$(uname)" in
@@ -39,7 +39,7 @@ export PATH="$HOME/anaconda/bin:/opt/local/bin:$PATH"
 ################################################################################
 # Bash Completions
 
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
 
 
 ################################################################################
@@ -47,6 +47,6 @@ export PATH="$HOME/anaconda/bin:/opt/local/bin:$PATH"
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	    . "$HOME/.bashrc"
+	    source "$HOME/.bashrc"
     fi
 fi
