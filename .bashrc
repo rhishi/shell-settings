@@ -226,3 +226,10 @@ esac
 function studio() {
   "$android_studio" "$@" &
 }
+
+################################################################################
+# Custom .bashrc files
+
+for custom_bashrc in "$HOME"/.bashrc.*[^~]; do
+    [ -f "${custom_bashrc}" ] && source "${custom_bashrc}"
+done
