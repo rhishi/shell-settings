@@ -43,6 +43,14 @@ export PATH="$HOME/anaconda/bin:/opt/local/bin:$PATH"
 
 
 ################################################################################
+# Custom .bash_profile files
+
+for custom_bash_profile in "$HOME"/.bash_profile.*[^~]; do
+    [ -f "${custom_bash_profile}" ] && source "${custom_bash_profile}"
+done
+
+
+################################################################################
 # Invoke ~/.bashrc
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
