@@ -1,12 +1,57 @@
 # ~/.bashrc
 #
 # See ~/.bash_profile for the description of when which files are executed.
+#
+# This file is divided into two parts:
+#   Non-interactive top half,
+#   Interactive bottom half.
+# See ~/.bash_profile for the reasoning behind that.
+#
 
-# If not running interactively, don't do anything.  Otherwise scp, rsync break.
-case $- in
-    *i*) ;;
-      *) return ;;
+################################################################################
+# Non-interactive top half
+
+export PLATFORM=unknown
+case "$(uname)" in
+    Linux)  PLATFORM=linux   ;;
+    Darwin) PLATFORM=mac     ;;
+    *)      PLATFORM=unknown ;;
 esac
+
+export CODE="$HOME/code"
+
+################################################################################
+# PATH Customizations
+
+export PATH="$HOME/anaconda/bin:/opt/local/bin:$PATH"
+
+
+################################################################################
+# If not running interactively, return.
+
+if [[ ! $- =~ i ]]; then
+    ############################################################################
+    # Custom .bashrc files
+
+    for custom_bashrc in "$HOME"/.bashrc.*[^~]; do
+        [ -f "${custom_bashrc}" ] && source "${custom_bashrc}"
+    done
+
+    return
+fi
+
+
+################################################################################
+# Interactive bottom half
+
+################################################################################
+# Bash Completions
+
+[ -f /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
+
+
+################################################################################
+# Customizations
 
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -111,6 +156,7 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
+
 
 ################################################################################
 # Aliases
