@@ -23,7 +23,7 @@ export CODE="$HOME/code"
 ################################################################################
 # PATH Customizations
 
-export PATH="$HOME/anaconda/bin:/opt/local/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 
 ################################################################################
