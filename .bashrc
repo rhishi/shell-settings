@@ -217,6 +217,17 @@ alias la='ls -A'       # show hidden files, but not . and .. (that's -a)
 alias lla='ls -Al'     # show hidden files, but not . and .. in -l style
 
 
+# Mac: Alias Pipenv for Python 2 and Python 3.
+# This is assumed to work in concert with Homebrew Python 2 and Python 3.
+# Homebrew sets up python2, python3, pip2, pip3 commands in /usr/local/bin.
+# Pipenv is then installed for both versions in their user directories.
+# The following aliases make pipenv2, pipenv3 available as commands.
+if [[ $PLATFORM == "mac" ]]; then
+    alias pipenv2="$HOME/Library/Python/2.7/bin/pipenv"
+    alias pipenv3="$HOME/Library/Python/3.7/bin/pipenv"
+fi
+
+
 case $PLATFORM in
     linux) emacs="/usr/bin/emacs" ;;
     mac)   emacs="/Applications/Emacs.app/Contents/MacOS/Emacs" ;;
