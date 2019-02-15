@@ -227,6 +227,11 @@ if [[ $PLATFORM == "mac" ]]; then
     alias pipenv3="$HOME/Library/Python/3.7/bin/pipenv"
 fi
 
+# Bring in conda command using the new way introduced in 4.4.0.
+if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    source "$HOME/miniconda3/etc/profile.d/conda.sh"
+fi
+
 
 case $PLATFORM in
     linux) emacs="/usr/bin/emacs" ;;
