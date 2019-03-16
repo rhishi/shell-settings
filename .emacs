@@ -8,7 +8,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;;
+ ;; Display
  '(inhibit-startup-screen t)
+ '(column-number-mode t)
+ '(blink-cursor-mode nil)
+ ;;
+ ;; Editing
+ '(indent-tabs-mode nil)
+ '(mouse-drag-copy-region t)
+ ;;
+ ;; Navigating
  '(scroll-conservatively 1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
